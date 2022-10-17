@@ -1,0 +1,58 @@
+body{
+    background-color: black;
+}
+
+.main{
+    background-color: white;
+    margin: auto;
+    width:80%;
+    height: 800px;
+    padding: 50px;
+
+}
+/*Top Div style*/
+.topDiv{
+    background-image: linear-gradient(to  right,white,rgba(224, 230, 216, 0.815), rgb(73, 252, 192), rgba(36, 153, 0, 0.644));    
+    text-align: center;
+    margin: auto;
+    width: 80%;
+    border: 2.5px solid green;
+    border-radius: 45px;
+    padding: 10px;
+    
+}
+.ASCII-ART{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: lighter;
+    color:black;
+    font-size: 100px;
+}
+
+/*Mid Div style*/
+.midDiv{
+    background-color: blue;
+    margin: auto;
+    width : 40%;
+    height: 100px;
+    padding:10px;
+}
+
+.RightBox{
+    position: static;
+ }
+
+.inputText{
+    position: static;
+    color: black;
+   
+}
+
+/*Bottom Div style*/
+.bottomDiv{
+    margin: auto;
+    background-color:white;
+    width: 80%;
+    height: 300px;
+    border:5px solid rgb(0, 51, 128);
+    border-radius: 10px;
+}
