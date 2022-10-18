@@ -10,16 +10,13 @@ body{
     padding: 50px;
 
 }
-/*Top Div style*/
+/*topBox*/
 .topDiv{
     background-image: linear-gradient(to  right,white,rgba(224, 230, 216, 0.815), rgb(73, 252, 192), rgba(36, 153, 0, 0.644));    
     text-align: center;
     margin: auto;
-    width: 80%;
-    border: 2.5px solid green;
-    border-radius: 45px;
+    width: 90%;
     padding: 10px;
-    
 }
 .ASCII-ART{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -28,31 +25,44 @@ body{
     font-size: 100px;
 }
 
-/*Mid Div style*/
-.midDiv{
-    background-color: blue;
-    margin: auto;
-    width : 40%;
-    height: 100px;
-    padding:10px;
-}
-
-.RightBox{
-    position: static;
- }
-
-.inputText{
-    position: static;
-    color: black;
-   
-}
-
-/*Bottom Div style*/
+/*bottomBox*/
 .bottomDiv{
+    background-image: linear-gradient(to  right,white,rgba(224, 230, 216, 0.815), rgb(73, 252, 192), rgba(36, 153, 0, 0.644));    
+    text-align: center;
+    margin: auto;
+    width: 90%;
+    height: 400px;
+    padding: 10px;
+
+}
+.RightDiv{
+    float: bottom,left;
+    background: white;
+    margin: auto;
+    width : 70%;
+    height: 30px;
+    border: 5px solid black;
+    padding-top: 5px;
+}
+
+.LeftDiv{
+    float: center;
     margin: auto;
     background-color:white;
-    width: 80%;
+    width: 70%;
     height: 300px;
-    border:5px solid rgb(0, 51, 128);
-    border-radius: 10px;
+    border:5px solid black;
+    border-top: none;
+    padding-top: 50px;
+}
+pre {
+    display: block;
+    font-family: monospace;
+    white-space: pre;
+    margin: 1em 0;
+  } 
+#outputText{
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
 }

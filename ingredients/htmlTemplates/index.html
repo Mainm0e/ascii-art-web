@@ -12,19 +12,29 @@
         <div id="topBox" class="topDiv">
             <h1 class="ASCII-ART">ASCII - ART</h1>
         </div>
-        <div id="midBox" class="midDiv">
-            <div id="inputText" class="inputText" slot="Text"><input type="text"></div>
-            <div id="RightBox" class="RightBox">
-                <select name="Themes" id="Themes" class="Themes">
-                    <option value="standard.txt">Standard</option>
-                    <option value="shadow.txt">Shadow</option>
-                    <option value="thinkertoy.txt">Thinkertoy</option>
-                </select>
+        <div id="bottomBox" class="bottomDiv">
+            <div id="RightBox" class="RightDiv">
+                <form action="">
+                    <div id="inputText" class="inputText" slot="Text">
+                            <input type="text" id="inputText" style="width:240px; height: 23px; border: none; text-align: center;" placeholder="Type Something" maxlength="12" ></input>
+                            <select name="Themes" id="Themes" class="Themes">
+                                <option value="standard.txt">Standard</option>
+                                <option value="shadow.txt">Shadow</option>
+                                <option value="thinkertoy.txt">Thinkertoy</option>
+                            </select>
+                            <button id="ConvertAscii">Convert</button>
+                    </div>
+                </form>
+            </div>
+            <div id="LeftBox" class="LeftDiv">
+                <div id="outputText" class="fig">
+                <pre style="float: left;" class="fig">output
+                </pre>
             </div>
         </div>
-        <div id="bottomBox" class="bottomDiv">
-            <div id="outputText" class="outputText" slot="Text">Im here</div>
-        </div>
+        
     </div>
+    </div>
+
 </body>
 </html>
