@@ -14,7 +14,7 @@
         </div>
         <div id="bottomBox" class="bottomDiv">
             <div id="RightBox" class="RightDiv">
-                <form action="/input_Ascii-Art" method="GET">
+                <form action="/inputAscii" method="POST">
                     <div id="inputText" class="inputText" slot="Text">
                             <input name="inputText" type="text" id="inputText" style="width:240px; height: 23px; border: none; text-align: center;" placeholder="Type Something" maxlength="12" ></input>
                         <!--<select name="Themes" id="Themes" class="Themes">
@@ -28,7 +28,7 @@
             </div>
             <div id="LeftBox" class="LeftDiv">
                 <div id="outputText" class="fig">
-                <pre style="float: left;" class="fig">{{.First}} {{.Hello}}
+                <pre style="float: left;" class="fig">{{.Output}}
                 </pre>
             </div>
         </div>

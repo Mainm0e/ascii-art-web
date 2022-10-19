@@ -1,37 +1,46 @@
 package main
 
 import (
-	"html/template"
+	"fmt"
+	"log"
 	"net/http"
+	"text/template"
 )
 
-var tpl *template.Template
-
-func init() {
-	tpl = template.Must(template.ParseGlob("ingredients/static/*.html"))
-}
+var temp *template.Template
 
 func main() {
-	static := http.FileServer(http.Dir("./ingredients/static"))
-	http.Handle("/", static)
-	http.HandleFunc("/input_Ascii-Art", processor)
-	http.ListenAndServe(":8000", nil)
+
+	fileServer := http.FileServer(http.Dir("./ingredients/static"))
+	http.Handle("/", fileServer)
+	http.HandleFunc("/inputAscii", AsciiArtHandle)
+	fmt.Println("Start sever at port 8080...")
+
+	if err := http.ListenAndServe(":8080", nil); err != nil {
+		log.Fatal(err)
+	}
 }
 
-func processor(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "GET" {
-		http.Redirect(w, r, "/", http.StatusSeeOther)
+func AsciiArtHandle(w http.ResponseWriter, r *http.Request) {
+	type Data struct {
+		Output    string
+		ErrorNum  int
+		ErrorText string
+	}
+	d := Data{}
+	temp = template.Must(template.ParseGlob("ingredients/static/*.html"))
+	if err := r.ParseForm(); err != nil {
+		fmt.Fprintf(w, "ParseForm() err: %v", err)
 		return
 	}
 
-	texts := r.FormValue("inputText")
-	d := struct {
-		Dick  string
-		Hello string
-	}{
-		Dick:  texts,
-		Hello: " _    _          _   _\n| |  | |        | | | |\n| |__| |   ___  | | | |   ___\n|  __  |  / _ \\ | | | |  / _ \\\n| |  | | |  __/ | | | | | (_) |",
+	if r.Method == "GET" {
+		temp.ExecuteTemplate(w, "index.html", d)
+	} else if r.Method == "POST" {
+		Ascii := r.FormValue("inputText")
+
+		d.Output = Ascii
 	}
-	tpl.ExecuteTemplate(w, "index.html", d)
+	temp.ExecuteTemplate(w, "index.html", d)
 
 }
