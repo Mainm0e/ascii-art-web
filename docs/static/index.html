@@ -4,22 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="nicestyle.css" rel="stylesheet">
+    <link href="/docs/static/nicestyle.css" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
     <p id='head1' class='header'>Ascii Art Web</p>
    <form action="/ascii-art" method="POST">
         <div class="inputT">
-        <input name="inputText" type="text" id="inputText" class="styleInput" placeholder="Type Something" maxlength="24" ></input>
-            <select name="Font" id="Font" class="sFont">
-                <option value="fontfile/standard.txt">Standard</option>
-                <option value="fontfile/shadow.txt">Shadow</option>
-                <option value="fontfile/thinkertoy.txt">Thinkertoy</option>
+            <input name="input" type="text" id="inputText" class="styleInput" placeholder="Type Something" maxlength="24" ></input>
+            <select name="font" id="Font" class="sFont">
+                <option class="option" value="standard.txt">Standard</option>
+                <option class="option" value="shadow.txt">Shadow</option>
+                <option class="option" value="thinkertoy.txt">Thinkertoy</option>
             </select>
         </div>
-        <button id="ConvertAscii">Continue</button>
+        <button name="convert"id="ConvertAscii">Convert</button>
     </form>
+    
   <div class='light x1'></div>
   <div class='light x2'></div>
   <div class='light x3'></div>
@@ -29,6 +30,5 @@
   <div class='light x7'></div>
   <div class='light x8'></div>
   <div class='light x9'></div>
-    
 </body>
 </html>

@@ -9,7 +9,7 @@ import (
 
 func Output(s, t string) string {
 	String := s
-	Theme := t
+	Theme := "./docs/fontfile/" + t
 	FileName := "Text.txt"
 	var NewString string
 

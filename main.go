@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"text/template"
 
-	"github.com/mainm0e/asciiweb/rary"
+	"github.com/mainm0e/asciiweb/docs/rary"
 )
 
 var temp *template.Template
@@ -18,47 +17,52 @@ type Data struct {
 }
 
 func main() {
+	Port := ":8080"
+	http.HandleFunc("/", ServerHandler)
+	http.HandleFunc("/ascii-art", AsciiArtHandler)
+	fileServer := http.FileServer(http.Dir("./docs"))
+	http.Handle("/docs/", http.StripPrefix("/docs/", fileServer))
+	fmt.Printf("Start sever at port %v...\n", Port)
+	http.ListenAndServe(Port, nil)
+}
 
-	fileServer := http.FileServer(http.Dir("./static"))
-	http.Handle("/", fileServer)
-	http.HandleFunc("/ascii-art", AsciiArtHandle)
-	fmt.Println("Start sever at port 8080...")
-
-	if err := http.ListenAndServe(":8080", nil); err != nil {
-		log.Fatal(err)
+func ServerHandler(w http.ResponseWriter, r *http.Request) {
+	d := Data{}
+	if r.Method == "GET" {
+		temp.ExecuteTemplate(w, "index.html", d)
 	}
 }
 
-func AsciiArtHandle(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(r)
-	if r.URL.Path != "/ascii-art" {
-		fmt.Println("hi")
-		errorHandler(w, r, http.StatusNotFound)
-		return
-	}
-	//err 404 handle
-
+func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 	d := Data{}
-	temp = template.Must(template.ParseGlob("static/*.html"))
-
-	if err := r.ParseForm(); err != nil {
-		fmt.Fprintf(w, "ParseForm() err: %v", err)
+	temp = template.Must(template.ParseGlob("docs/static/*.html"))
+	fmt.Println(r.URL.Path)
+	if r.URL.Path != "/ascii-art" {
+		d.ErrorNum = 404
+		d.ErrorText = "page Not Found"
+		errorHandler(w, r, &d)
 		return
 	}
-
+	d.Output = "AsciiArt"
 	if r.Method == "GET" {
 		temp.ExecuteTemplate(w, "index.html", d)
 	} else if r.Method == "POST" {
-		Ascii := r.FormValue("ascii-art")
-		Font := r.FormValue("Font")
-		d.Output = rary.Output(Ascii, Font)
+		text := r.FormValue("input")
+		font := r.FormValue("font")
+		out := rary.Output(text, font)
+
+		fmt.Println(out)
+		d.Output = out
+		temp.ExecuteTemplate(w, "index.html", d)
+	} else {
+		d.ErrorNum = 400
+		d.ErrorText = "Bad Request"
+		errorHandler(w, r, &d)
+		return
 	}
-	temp.ExecuteTemplate(w, "resulindex.html", d)
 }
 
-func errorHandler(w http.ResponseWriter, r *http.Request, status int) {
-	w.WriteHeader(status)
-	if status == http.StatusNotFound {
-		fmt.Fprint(w, "custom 404")
-	}
+func errorHandler(w http.ResponseWriter, r *http.Request, d *Data) {
+	w.WriteHeader(d.ErrorNum)
+	temp.ExecuteTemplate(w, "err.html", d)
 }
