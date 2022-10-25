@@ -13,11 +13,19 @@
    <form action="/"  method="POST">
         <div class="inputT">
             <input name="input" type="text" id="inputText" class="styleInput" placeholder="Type Something" maxlength="24" ></input>
-            <select name="font" id="Font" class="sFont">
-                <option class="option" value="standard.txt">Standard</option>
-                <option class="option" value="shadow.txt">Shadow</option>
-                <option class="option" value="thinkertoy.txt">Thinkertoy</option>
-            </select>
+           <div class="Options">
+               <select name="font" id="Font" class="sFont">
+                   <option class="option" value="standard.txt">Standard</option>
+                   <option class="option" value="shadow.txt">Shadow</option>
+                   <option class="option" value="thinkertoy.txt">Thinkertoy</option>
+                </select>
+                <input type="checkbox" class="function">download</input>
+                <select name="File" id="File" class="sFile">
+                    <option value="asciiart.txt">.txt</option>
+                    <option value="asciiart.pdf">.pdf</option>
+                </select>
+               
+            </div>
             <button name="convert"id="ConvertAscii">Convert</button>
         </div>
     </form>

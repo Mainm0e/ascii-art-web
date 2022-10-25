@@ -35,11 +35,6 @@ func Output(s, t string) (string, bool) {
 			NewString = NewString + makeArt(splitString[i], Theme)
 		}
 	}
-	//this comment is just src that make File
-	FileName := "Text.pdf"
-	output := []byte(NewString)
-	MakeFile := os.WriteFile(FileName, output, 0644)
-	Check(MakeFile)
 
 	return NewString, err
 }
