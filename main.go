@@ -50,6 +50,12 @@ func ServerHandler(w http.ResponseWriter, r *http.Request) {
 			errorHandler(w, r, &d)
 			return
 		}
+		/* for making file
+			FileName := "Text.pdf"
+		output := []byte(NewString)
+		MakeFile := os.WriteFile(FileName, output, 0644)
+		Check(MakeFile)
+		*/
 
 		fmt.Println(out)
 		d.Output = out

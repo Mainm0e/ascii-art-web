@@ -35,12 +35,12 @@ func Output(s, t string) (string, bool) {
 			NewString = NewString + makeArt(splitString[i], Theme)
 		}
 	}
-	/* //this comment is just src that make File
-	FileName := "Text.txt"
+	//this comment is just src that make File
+	FileName := "Text.pdf"
 	output := []byte(NewString)
 	MakeFile := os.WriteFile(FileName, output, 0644)
 	Check(MakeFile)
-	*/
+
 	return NewString, err
 }
 func Check(err error) {
@@ -99,6 +99,6 @@ func makeArt(s, t string) string {
 		}
 	}
 
-	AsciiArt = l1 + "\n" + l2 + "\n" + l3 + "\n" + l4 + "\n" + l5 + "\n" + l6 + "\n" + l7 + "\n" + l8
+	AsciiArt = l1 + "\n" + l2 + "\n" + l3 + "\n" + l4 + "\n" + l5 + "\n" + l6 + "\n" + l7 + "\n" + l8 + "\n"
 	return AsciiArt
 }
