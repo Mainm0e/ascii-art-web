@@ -5,11 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/docs/static/nicestyle.css" rel="stylesheet">
-    <title>Document</title>
+    <title>Ascii Art</title>
 </head>
 <body>
-    <p id='head1' class='header'>Ascii Art Web</p>
-   <form action="/ascii-art" method="POST">
+    <pre id='head2' class='Output'>{{.Output}}</pre>
+
+   <form action="/"  method="POST">
         <div class="inputT">
             <input name="input" type="text" id="inputText" class="styleInput" placeholder="Type Something" maxlength="24" ></input>
             <select name="font" id="Font" class="sFont">
@@ -17,8 +18,8 @@
                 <option class="option" value="shadow.txt">Shadow</option>
                 <option class="option" value="thinkertoy.txt">Thinkertoy</option>
             </select>
+            <button name="convert"id="ConvertAscii">Convert</button>
         </div>
-        <button name="convert"id="ConvertAscii">Convert</button>
     </form>
     
   <div class='light x1'></div>

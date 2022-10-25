@@ -7,10 +7,23 @@ import (
 	"strings"
 )
 
-func Output(s, t string) string {
+func Ascii(s string) bool {
+	for _, c := range s {
+		if c > 127 {
+			return false
+		}
+	}
+	return true
+}
+
+func Output(s, t string) (string, bool) {
 	String := s
+	err := true
+	if Ascii(s) != true {
+		err = false
+	}
+
 	Theme := "./docs/fontfile/" + t
-	FileName := "Text.txt"
 	var NewString string
 
 	splitString := strings.Split(String, "\\n")
@@ -22,11 +35,13 @@ func Output(s, t string) string {
 			NewString = NewString + makeArt(splitString[i], Theme)
 		}
 	}
-
+	/* //this comment is just src that make File
+	FileName := "Text.txt"
 	output := []byte(NewString)
 	MakeFile := os.WriteFile(FileName, output, 0644)
 	Check(MakeFile)
-	return NewString
+	*/
+	return NewString, err
 }
 func Check(err error) {
 	if err != nil {
