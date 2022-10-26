@@ -45,8 +45,17 @@ func ServerHandler(w http.ResponseWriter, r *http.Request) {
 		temp.ExecuteTemplate(w, "index.html", d)
 	} else if r.Method == "POST" {
 		text := r.FormValue("input")
+		ty := []byte(text)
+		fmt.Println(ty)
+		newtext := TextNewLine(ty)
 		font := r.FormValue("font")
-		out, err := rary.Output(text, font)
+		if Fontfileerr(font) == false {
+			d.ErrorNum = 400
+			d.ErrorText = "Internal Server Error"
+			errorHandler(w, r, &d)
+			return
+		}
+		out, err := rary.Output(newtext, font)
 		if err == false {
 			d.ErrorNum = 500
 			d.ErrorText = "Internal Server Error"
@@ -88,8 +97,17 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		temp.ExecuteTemplate(w, "index.html", d)
 	} else if r.Method == "POST" {
 		text := r.FormValue("input")
+		ty := []byte(text)
+		fmt.Println(ty)
+		newtext := TextNewLine(ty)
 		font := r.FormValue("font")
-		out, err := rary.Output(text, font)
+		if Fontfileerr(font) == false {
+			d.ErrorNum = 400
+			d.ErrorText = "Internal Server Error"
+			errorHandler(w, r, &d)
+			return
+		}
+		out, err := rary.Output(newtext, font)
 		if err == false {
 			d.ErrorNum = 500
 			d.ErrorText = "Internal Server Error"
@@ -119,4 +137,32 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 func errorHandler(w http.ResponseWriter, r *http.Request, d *Data) {
 	w.WriteHeader(d.ErrorNum)
 	temp.ExecuteTemplate(w, "err.html", d)
+}
+
+func Fontfileerr(s string) bool {
+	switch s {
+	case "standard.txt":
+		return true
+	case "shadow.txt":
+		return true
+	case "thinkertoy.txt":
+		return true
+	default:
+		return false
+	}
+}
+
+func TextNewLine(b []byte) string {
+	var newString string
+	for i := 0; i < len(b); i++ {
+		if b[i] == 13 && b[i+1] == 10 {
+			fmt.Println(b[i], b[i+1])
+			newString = newString + "\\n"
+			i++
+		} else {
+			newString = newString + string(b[i])
+		}
+	}
+
+	return newString
 }
