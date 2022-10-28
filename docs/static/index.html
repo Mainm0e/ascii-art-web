@@ -8,28 +8,33 @@
     <title>Ascii Art</title>
 </head>
 <body>
-    <pre id='head2' class='Output'>{{.Output}}</pre>
-
-   <form action="/ascii-art"  method="POST">
-        <div class="inputT">
-            <textarea name="input" type="text" id="inputText" class="styleInput" placeholder="Type Something" maxlength="24" ></textarea>
-           <div class="Options">
-               <select name="font" id="Font" class="sFont">
-                   <option class="option" value="standard.txt">Standard</option>
-                   <option class="option" value="shadow.txt">Shadow</option>
-                   <option class="option" value="thinkertoy.txt">Thinkertoy</option>
-                </select>
-                <input type="checkbox" class="function" name="download">download</input>
-                <select name="File" id="File" class="sFile">
-                    <option name="selectFile" value="asciiart.txt">.txt</option>
-                    <option name="selectFile" value="asciiart.pdf">.pdf</option>
-                </select>
-               
-            </div>
-            <button name="convert"id="ConvertAscii">Convert</button>
+    <div class="main">
+        <div class="emptyDiv"></div>
+        <div class="topDiv">
+            <pre class='Output' READONLY>{{.Output}} </pre>
         </div>
-    </form>
-    
+        <div class="bottomDiv">
+            <form action="/ascii-art"  method="POST">
+                <div class="inputT">
+                    <textarea name="input" type="text" id="inputText" class="styleInput" placeholder="Type Something" maxlength="24" ></textarea>
+                    <div class="Options">
+                        <select name="font" id="Font" class="sFont">
+                            <option class="option" value="standard.txt">Standard</option>
+                            <option class="option" value="shadow.txt">Shadow</option>
+                            <option class="option" value="thinkertoy.txt">Thinkertoy</option>
+                        </select>
+                        <input type="checkbox" class="function" name="download">download</input>
+                        <select name="File" id="File" class="sFile">
+                            <option name="selectFile" value="asciiart.txt">.txt</option>
+                            <option name="selectFile" value="asciiart.pdf">.pdf</option>
+                        </select>
+                        
+                    </div>
+                    <button name="convert"id="ConvertAscii">Convert</button>
+                </div>
+            </form>
+        </div>
+    </div>  
   <div class='light x1'></div>
   <div class='light x2'></div>
   <div class='light x3'></div>
